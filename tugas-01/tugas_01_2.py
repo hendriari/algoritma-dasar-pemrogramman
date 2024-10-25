@@ -1,5 +1,3 @@
-import json
-
 data = {
     "name" : "saya hendri",
     "favorite" : "saya suka ngantuk",
