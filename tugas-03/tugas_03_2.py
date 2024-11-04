@@ -1,4 +1,5 @@
 import datetime
+import math
 from general_failure import GeneralFailure
 
 # MENCOBA MENGGUNAKAN OOP DI PYTHON
@@ -44,17 +45,15 @@ def outputs_receipt(wide, name):
         if wide < 1:
             raise GeneralFailure("Luas dinding kurang dari 1 meter persegi")
 
-        count_paint = 1
-     
-        if wide > 10:
-            count_paint += 1
+        count_paint = wide / 10
+        total_paint = math.ceil(count_paint)
             
-        price = 25000 * count_paint
+        price = 25000 * total_paint
 
         data = {
             "name": name,
             "date": date_now,
-            "count": count_paint,
+            "count": total_paint,
             "price": price,
         }
 
