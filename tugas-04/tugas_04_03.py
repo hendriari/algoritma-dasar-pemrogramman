@@ -10,10 +10,10 @@ menu = [
 
 while True:
     buyer_name = input("Nama pembeli : ").strip()
-    if buyer_name and buyer_name.replace(" ", " ").isalpha():
+    if buyer_name and buyer_name.replace(" ", "").isalpha():
         break
     else:
-        print("\nNama tidak valid, mohon ulangi lagi")
+        print("\nNama tidak valid, mohon masukkan nama hanya dengan huruf")
 
 while True:
     try:

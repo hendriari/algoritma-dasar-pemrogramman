@@ -1,6 +1,5 @@
 from datetime import datetime
 import math
-from general_failure import GeneralFailure
 
 class Receipt:
     def __init__(self, name, date, count, price):
@@ -26,16 +25,19 @@ class Receipt:
 while True:
     try:
         wide_walls = float(input("Masukkan luas dinding dalam m² : "))
-        break
+        if wide_walls < 1:
+            print("\nLuas dinding tidak boleh kurang dari 1 m²")
+        else: 
+            break
     except ValueError:
         print("\nLuas dinding tidak valid. Mohon masukkan angka yang benar!")
 
 while True:
         buyer_name = input("Nama pembeli : ").strip()
-        if buyer_name and buyer_name.replace(" ", " ").isalpha():
+        if buyer_name and buyer_name.replace(" ", "").isalpha():
             break
         else:
-            print("\nNama tidak valid. Mohon masukkan nama yang benar!")
+            print("\nNama tidak valid. Mohon masukkan nama hanya dengan huruf!")
 
 while True:
     try:
@@ -49,9 +51,7 @@ while True:
 
 def outputs_receipt(buyer, date, wide):
     try:
-        if wide < 1:
-            raise GeneralFailure("Luas dinding kurang dari 1 meter persegi")
-        
+      
         count_paint = wide / 10
         total_paint = math.ceil(count_paint)
 
@@ -76,8 +76,6 @@ def outputs_receipt(buyer, date, wide):
         result = Receipt.from_json(data)
 
         return result.print_receipt()
-    except GeneralFailure as e:
-        return e.message
     except Exception as e:
         return f"Terjadi kesalahan {e}"
     
